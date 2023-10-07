@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Boston Housing Price Predictor</title>
+    <!-- Add Bootstrap CSS CDN link for styling -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+  </head>
+  <body>
+    <div class="container mt-5">
+      <h1 class="mb-4">Boston Housing Price Predictor</h1>
+      <form method="post" action="/predict/" class="mb-5">
+        <!-- Input fields for all features -->
+        <div class="form-group row">
+          <label for="crim" class="col-sm-2 col-form-label">CRIM:</label>
+          <div class="col-sm-10">
+            <input
+              type="number"
+              step="any"
+              class="form-control"
+              id="crim"
+              name="crim"
+            />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="zn" class="col-sm-2 col-form-label">ZN:</label>
+          <div class="col-sm-10">
+            <input
+              type="number"
+              step="any"
+              class="form-control"
+              id="zn"
+              name="zn"
+            />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="indus" class="col-sm-2 col-form-label">INDUS:</label>
+          <div class="col-sm-10">
+            <input
+              type="number"
+              step="any"
+              class="form-control"
+              id="indus"
+              name="indus"
+            />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="chas" class="col-sm-2 col-form-label">CHAS:</label>
+          <div class="col-sm-10">
+            <input type="number" class="form-control" id="chas" name="chas" />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="nox" class="col-sm-2 col-form-label">NOX:</label>
+          <div class="col-sm-10">
+            <input
+              type="number"
+              step="any"
+              class="form-control"
+              id="nox"
+              name="nox"
+            />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="rm" class="col-sm-2 col-form-label">RM:</label>
+          <div class="col-sm-10">
+            <input
+              type="number"
+              step="any"
+              class="form-control"
+              id="rm"
+              name="rm"
+            />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="age" class="col-sm-2 col-form-label">AGE:</label>
+          <div class="col-sm-10">
+            <input
+              type="number"
+              step="any"
+              class="form-control"
+              id="age"
+              name="age"
+            />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="dis" class="col-sm-2 col-form-label">DIS:</label>
+          <div class="col-sm-10">
+            <input
+              type="number"
+              step="any"
+              class="form-control"
+              id="dis"
+              name="dis"
+            />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="rad" class="col-sm-2 col-form-label">RAD:</label>
+          <div class="col-sm-10">
+            <input type="number" class="form-control" id="rad" name="rad" />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="tax" class="col-sm-2 col-form-label">TAX:</label>
+          <div class="col-sm-10">
+            <input type="number" class="form-control" id="tax" name="tax" />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="ptratio" class="col-sm-2 col-form-label">PTRATIO:</label>
+          <div class="col-sm-10">
+            <input
+              type="number"
+              step="any"
+              class="form-control"
+              id="ptratio"
+              name="ptratio"
+            />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="b" class="col-sm-2 col-form-label">B:</label>
+          <div class="col-sm-10">
+            <input
+              type="number"
+              step="any"
+              class="form-control"
+              id="b"
+              name="b"
+            />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="lstat" class="col-sm-2 col-form-label">LSTAT:</label>
+          <div class="col-sm-10">
+            <input
+              type="number"
+              step="any"
+              class="form-control"
+              id="lstat"
+              name="lstat"
+            />
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="col-sm-10 offset-sm-2">
+            <button type="submit" class="btn btn-primary">Predict</button>
+          </div>
+        </div>
+      </form>
+      {% if prediction is not none %}
+      <h2>Prediction Result</h2>
+      <p>Predicted Price: {{ prediction }}</p>
+      {% endif %}
+    </div>
+    <!-- Add Bootstrap JS and Popper.js CDN links for form validation and functionality -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>
