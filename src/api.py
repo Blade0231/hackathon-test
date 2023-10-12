@@ -1,6 +1,7 @@
-from fastapi import FastAPI, HTTPException, Depends, status
+from fastapi import FastAPI, HTTPException, Depends, status, Request, Form
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from pydantic import BaseModel
+from fastapi.staticfiles import StaticFiles
 from src.utils import UserDatabase, UserAddress, Schedule, Attendance
 
 from passlib.context import CryptContext
@@ -8,11 +9,25 @@ from datetime import datetime, timedelta
 from jose import JWTError, jwt
 from typing import Optional
 
+from fastapi.templating import Jinja2Templates
+from starlette.responses import HTMLResponse
+
+import os
+
+print(os.getcwd())
+
 app = FastAPI()
+app.mount("/static", StaticFiles(directory="src/static"), name="static")
+templates = Jinja2Templates(directory="src/templates")
 
 SECRET_KEY = "AKATSUKI-NARUTO"
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
+
+
+@app.get("/", response_class=HTMLResponse)
+async def read_root(request: Request):
+    return templates.TemplateResponse("login.html", {"request": request})
 
 
 class Token(BaseModel):
