@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>View Schedules</title>
+    <style>
+      body {
+        font-family: sans-serif;
+      }
+
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      th,
+      td {
+        border: 1px solid black;
+        padding: 5px;
+      }
+
+      .check-in-button {
+        background-color: green;
+        color: white;
+        padding: 10px;
+        border-radius: 5px;
+      }
+
+      .checkout-button {
+        background-color: red;
+        color: white;
+        padding: 10px;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>View Schedules</h1>
+
+    <table>
+      <thead>
+        <tr>
+          <th>User ID</th>
+          <th>Schedule Start</th>
+          <th>Schedule End</th>
+          <th>Check In</th>
+          <th>Check Out</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for schedule in schedules %}
+        <tr>
+          <td>{{ schedule.user_id }}</td>
+          <td>{{ schedule.schedule_start }}</td>
+          <td>{{ schedule.schedule_end }}</td>
+          <td><button class="check-in-button">Check In</button></td>
+          <td><button class="checkout-button">Check Out</button></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </body>
+</html>

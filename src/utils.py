@@ -89,7 +89,7 @@ class UserAddress(Database):
         self.conn.commit()
 
     def add_record(self, user_id, street, city, state, postal_code, country):
-        insert_user_sql = "INSERT INTO users (USER_ID, STREET, CITY, STATE, POSTAL_CODE, COUNTRY) VALUES (?, ?, ?, ?, ?, ?)"
+        insert_user_sql = "INSERT INTO address (USER_ID, STREET, CITY, STATE, POSTAL_CODE, COUNTRY) VALUES (?, ?, ?, ?, ?, ?)"
         self.cursor.execute(
             insert_user_sql, (user_id, street, city, state, postal_code, country)
         )
@@ -103,18 +103,18 @@ class Schedule(Database):
     def create_table(self):
         create_table_sql = """
         CREATE TABLE IF NOT EXISTS schedule (
-            ID TEXT PRIMARY KEY NOT NULL,
+            ID INTEGER PRIMARY KEY NOT NULL,
             USER_ID TEXT NOT NULL,
             CLIENT_ID TEXT,
-            START_TIME DATETIME,
-            END_TIME DATETIME
+            START_TIME TEXT,
+            END_TIME TEXT
         );
         """
         self.cursor.execute(create_table_sql)
         self.conn.commit()
 
     def add_record(self, user_id, client_id, start_time, end_time):
-        insert_user_sql = "INSERT INTO users (USER_ID, CLIENT_ID, START_TIME, END_TIME) VALUES (?, ?, ?, ?)"
+        insert_user_sql = "INSERT INTO schedule (USER_ID, CLIENT_ID, START_TIME, END_TIME) VALUES (?, ?, ?, ?)"
         self.cursor.execute(insert_user_sql, (user_id, client_id, start_time, end_time))
         self.conn.commit()
 
@@ -125,11 +125,11 @@ class Attendance(Database):
 
     def create_table(self):
         create_table_sql = """
-        CREATE TABLE IF NOT EXISTS schedule (
-            ID TEXT NOT NULL,
+        CREATE TABLE IF NOT EXISTS attendance (
+            ID INTEGER NOT NULL,
             USER_ID TEXT NOT NULL,
             STATUS TEXT,
-            CREATED DATETIME
+            CREATED TEXT
         );
         """
         self.cursor.execute(create_table_sql)
@@ -137,7 +137,7 @@ class Attendance(Database):
 
     def add_record(self, id, user_id, status, created):
         insert_user_sql = (
-            "INSERT INTO users (ID, USER_ID, STATUS, CREATED) VALUES (?, ?, ?, ?)"
+            "INSERT INTO attendance (ID, USER_ID, STATUS, CREATED) VALUES (?, ?, ?, ?)"
         )
         self.cursor.execute(insert_user_sql, (id, user_id, status, created))
         self.conn.commit()
@@ -162,6 +162,13 @@ def main():
     )
 
     result = db.run_query(sql_query="SELECT * FROM users")
+
+    scd.add_record(
+        user_id="User5",
+        client_id="Client5",
+        start_time="2023-10-12 18:00:00.000000",
+        end_time="2023-10-12 19:00:00.000000",
+    )
 
     db.close()
 

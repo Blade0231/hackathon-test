@@ -91,20 +91,20 @@ class UserAddress(BaseModel):
 
 
 class ScheduleModel(BaseModel):
-    user_id: str
+    user_id: int
     client_id: str
-    start_time: datetime
-    end_time: datetime
+    start_time: str
+    end_time: str
 
 
 class attendance(BaseModel):
-    id_: str
+    id_: int
     user_id: str
     status: str
 
 
-@app.post("/login")
-async def login(user_data: UserLogin):
+@app.post("/login", response_class=HTMLResponse)
+async def login(request: Request, user_data: UserLogin):
     db = UserDatabase()
     user = db.run_query("SELECT * FROM users WHERE USER_ID = ?", (user_data.user_id,))
     db.close()
@@ -122,7 +122,9 @@ async def login(user_data: UserLogin):
     access_token = create_access_token(
         data={"sub": user_data.user_id}, expires_delta=access_token_expires
     )
-    return {"access_token": access_token, "token_type": "bearer"}
+    # return {"access_token": access_token, "token_type": "bearer"}
+
+    return templates.TemplateResponse("appointment.html", {"request": request})
 
 
 @app.get("/users/me", response_model=UserLogin)
