@@ -9,6 +9,10 @@
         .table-container {
             margin-bottom: 20px;
         }
+
+        h4 {
+            margin-bottom: 1rem;
+        }
     </style>
 </head>
 
@@ -67,28 +71,9 @@
                     </tr>
                 </tbody>
             </table>
+            <a type="submit" href="create.html" class="btn btn-secondary" >Create New Appointment</a>
         </div>
 
-        <h4>Create New Appointment</h4><hr>
-        <form>
-            <div class="form-group">
-                <label for="therapistName">Therapist Name</label>
-                <input type="text" class="form-control" id="therapistName" placeholder="Enter Therapist Name" required>
-            </div>
-            <div class="form-group">
-                <label for="clientName">Client Name</label>
-                <input type="text" class="form-control" id="clientName" placeholder="Enter Client Name" required>
-            </div>
-            <div class="form-group">
-                <label for="startDate">Start Date</label>
-                <input type="datetime-local" class="form-control" id="startDate" required>
-            </div>
-            <div class="form-group">
-                <label for="endDate">End Date</label>
-                <input type="datetime-local" class="form-control" id="endDate" required>
-            </div>
-            <button type="submit" class="btn btn-primary">Create Appointment</button>
-        </form>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
